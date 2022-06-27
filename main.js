@@ -58,7 +58,7 @@ function posCoor(elemento, X, Y){
 var coorA1 = [ancho/4, alto/2]
 var coorA2 = [ancho/4*3, alto/2]
 
-posCoor(but1, ancho/2, alto/8*6)
+posCoor(but1, ancho/2, alto/2)
 
 posCoor(area1, coorA1[0], coorA1[1])
 posCoor(area2, coorA2[0], coorA2[1])
@@ -181,7 +181,17 @@ window.addEventListener("deviceorientation",function(event) {
     EZ.innerHTML = "Y:"+gamma
 
     coefGiro    = beta
-    coefAvance  = gamma+25 
+    coefAvance  = gamma+15 
+    if(coefGiro<15 && coefGiro>-15) coefGiro=0
+    else coefGiro-=15
+    if(coefAvance<15 && coefAvance>-15) coefAvance=0
+    else coefAvance-=15
+    
+    if(coefGiro>50) coefGiro=50
+    if(coefGiro<-50) coefGiro=-50
+    
+    if(coefAvance>50) coefAvance=50
+    if(coefAvance<-50) coefAvance=-50
 
     coefi.innerHTML = "Coeficiente: "+coefGiro+", "+coefAvance
 
@@ -225,22 +235,13 @@ window.addEventListener("deviceorientation",function(event) {
     }
     if(potDer<-100){
         potIzq= potIzq-(potDer+100)
-        potDer=-100
+        potDer  =-100
     }
     if(potIzq<-100){
         potDer= potDer-(potIzq+100)
         potIzq=-100
         
     }
-
-    
-
-    // potDer += giro
-    // if(potDer>100){
-    //     potIzq -=(potDer-100)
-    //     potDer -=100
-    // }
-    
 
     pote.innerHTML = "Potencia: "+potIzq+", "+potDer
 
