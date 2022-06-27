@@ -177,15 +177,21 @@ window.addEventListener("deviceorientation",function(event) {
     gamma = Math.round(event.gamma);
 
     EX.innerHTML = "Z:"+alpha
-    EY.innerHTML = "X:"+beta 
+    EY.innerHTML = "X:"+beta
     EZ.innerHTML = "Y:"+gamma
 
     coefGiro    = beta
     coefAvance  = gamma+15 
     if(coefGiro<15 && coefGiro>-15) coefGiro=0
-    else coefGiro-=15
+    else{
+        if(coefGiro>0) coefGiro-=15
+        else coefGiro+=15
+    }
     if(coefAvance<15 && coefAvance>-15) coefAvance=0
-    else coefAvance-=15
+    else{
+        if(coefAvance>0) coefAvance-=15
+        else coefAvance+=15  
+    } 
     
     if(coefGiro>50) coefGiro=50
     if(coefGiro<-50) coefGiro=-50
@@ -218,10 +224,6 @@ window.addEventListener("deviceorientation",function(event) {
 
     potDer += vel
     potIzq += vel
-
-    if(potDer>100 || potDer<-100 || potIzq>100 || potIzq<-100){
-
-    }
 
     if(potDer>100){
         potIzq-=potDer-100
