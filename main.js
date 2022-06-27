@@ -32,7 +32,7 @@ function VelocidadValue(){
     dif = (Number(area2.style.top.replace('px',''))+area2.clientHeight/2-20) - Number(area2.style.top.replace('px',''))
     pot = Math.round(((Number(area2.style.top.replace('px','')) + area2.clientHeight/2) - (Number(joys1.style.top.replace('px','')) + joys1.clientHeight/2))*100/dif)
     if(pot>100) pot = 100
-    if(pot<-100) pot = -100
+    if(pot<-100) pot = -100 
     // console.log(pot)
     return pot
 }
